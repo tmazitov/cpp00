@@ -14,7 +14,7 @@ void print_commands()
 	std::cout << "Commands:" << std::endl;
 	std::cout << "-" << GREEN	<< "ADD"	<< RESET << " - add contact" << std::endl;
 	std::cout << "-" << BLUE	<< "SEARCH" << RESET << " - search contact" << std::endl;
-	std::cout << "-" << YELLOW	<< "SEARCH" << RESET << " - test phone book" << std::endl;
+	// std::cout << "-" << YELLOW	<< "TEST"	<< RESET << " - test phone book" << std::endl;
 	std::cout << "-" << RED		<< "EXIT"	<< RESET << " - exit the program" << std::endl;
 }
 
@@ -56,7 +56,7 @@ int main()
 		else if (command == "EXIT")
 			break;
 		// else if (command == "TEST")
-		//  
+		// 	phoneBook->test();		 
 	}
 
 	return 0;

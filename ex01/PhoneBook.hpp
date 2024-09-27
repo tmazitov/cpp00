@@ -21,6 +21,7 @@ public:
 	void searchContact();
 	
 	void printContactTable();
+	void test();
 };
 
 #endif // PHONEBOOK_HPP

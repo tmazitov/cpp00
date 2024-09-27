@@ -26,6 +26,7 @@ class Contact {
 
 		int getIndex() const;
 		void printAsTableRow() const;
+		void printInDetails() const;
 };
 
 #endif // CONTACT_HPP

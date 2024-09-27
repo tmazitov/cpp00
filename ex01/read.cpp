@@ -10,7 +10,9 @@ std::string repeatable_read(std::string placeholder, bool (*validator)(std::stri
 	while (i < max_tries || is_infinity)
 	{
 		std::cout << placeholder;
-		std::cin >> input;
+		std::getline(std::cin, input);
+		if (std::cin.eof() || std::cin.bad())
+			return "";
 		if (!is_empty(input) && validator(input))
 			return input;
 		i++;

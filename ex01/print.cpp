@@ -2,11 +2,13 @@
 
 int printHorizontalLine(int length)
 {
+	std::cout << "|";
 	for (int i = 0; i < length; i++)
 	{
 		std::cout << "-";
 	}
-	std::cout << std::endl;
+	std::cout << "|" << std::endl;
+
 	return length;
 }
 

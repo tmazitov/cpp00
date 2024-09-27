@@ -1,4 +1,6 @@
 #include "PhoneBook.hpp"
+#include <stdlib.h>
+#include <cstdio>
 
 PhoneBook::PhoneBook()
 {
@@ -16,18 +18,26 @@ void PhoneBook::searchContact()
 	if (index.empty())
 		return;
 	int contactIndex = std::atoi(index.c_str());
-	if (contactIndex < 0 || contactIndex >= this->addedContacts)
+	
+	if (contactIndex <= 0 || contactIndex > this->addedContacts)
 	{
-		print_error("invalid index");
+		print_error("index of contact is not exists");
 		return;
 	}
-	// this->contacts[contactIndex]->print();
+	for (int i = 0; i < 8; i++)
+	{
+		if (this->contacts[i]->getIndex() == contactIndex)
+		{
+			this->contacts[i]->printInDetails();
+			return;
+		}
+	}
+	print_error("index of contact is not exists");
 }
 
 void PhoneBook::addContact()
 {
-	static int index = 0;
-	int contactIndex = index % 8;
+	int contactIndex = this->addedContacts % 8;
 	Contact* contact = new Contact();
 
 	std::string firstName = repeatable_read("First name: ", is_letters_only);
@@ -46,35 +56,60 @@ void PhoneBook::addContact()
 	if (secret.empty())
 		return;
 
-	contact->setIndex(index);
+	contact->setIndex(this->addedContacts + 1);
 	contact->setFirstName(firstName);
 	contact->setLastName(lastName);
+	contact->setNickName(nickName);
 	contact->setPhoneNumber(phoneNumber);
 	contact->setSecret(secret);
 
 	this->contacts[contactIndex] = contact;
-
-	if (this->addedContacts < 8)
-		this->addedContacts++;
-
-	index++;
+	this->addedContacts++;
 }
 
 void PhoneBook::printContactTable()
 {
-	printHorizontalLine(44);
+	printHorizontalLine(51);
 	std::cout << "|";
 	printColumn("Index");
 	printColumn("First name");
 	printColumn("Last name");
 	printColumn("Nick name");
 	std::cout << std::endl;
-	printHorizontalLine(44);
-	for (int i = 0; i < this->addedContacts; i++)
+	printHorizontalLine(51);
+
+	for (int i = 0; i < std::min(this->addedContacts, 8); i++)
 	{
 		std::cout << "|";
 		this->contacts[i]->printAsTableRow();
 		std::cout << std::endl;
 	}
-	printHorizontalLine(44);
+	printHorizontalLine(51);
+}
+
+static std::string toString(int num) {
+	char buffer[20]; // Assuming the integer is not too large
+	std::sprintf(buffer, "%d", num);
+	return std::string(buffer);
+}
+
+void PhoneBook::test()
+{
+	int id;
+	std::string str;
+
+	for (int i = 0; i < 8; i++)
+	{
+		Contact* contact = new Contact();
+		id = i + 1;
+		str = toString(id);
+		contact->setIndex(id);
+		contact->setFirstName("First" + str);
+		contact->setLastName("Last" + str);
+		contact->setNickName("Nick" + str);
+		contact->setPhoneNumber("Phone" + str);
+		contact->setSecret("Secret" + str);
+		this->contacts[i] = contact;
+		this->addedContacts++;
+	}
 }
