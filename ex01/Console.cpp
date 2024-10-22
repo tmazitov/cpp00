@@ -12,7 +12,7 @@ std::string Console::repeatableRead(std::string placeholder, bool (*validator)(s
 		std::getline(std::cin, input);
 		if (std::cin.eof() || std::cin.bad())
 			return "";
-		if (!is_empty(input) && validator(input))
+		if (!Console::isEmpty(input) && validator(input))
 			return input;
 		i++;
 	}
@@ -64,8 +64,7 @@ void Console::printCommands()
 	std::cout << "Commands:" << std::endl;
 	std::cout << "-" << GREEN	<< "ADD"	<< RESET << " - add contact" << std::endl;
 	std::cout << "-" << BLUE	<< "SEARCH" << RESET << " - search contact" << std::endl;
-	if (IS_IMPROVED)
-	{
+	if (IMPROVED) {
 		std::cout << "-" << YELLOW	<< "TEST"	<< RESET << " - test phone book" << std::endl;
 	}
 	std::cout << "-" << RED		<< "EXIT"	<< RESET << " - exit the program" << std::endl;
@@ -77,7 +76,7 @@ bool Console::isCommand(std::string command)
 
 	isCommand = command == "ADD" 
 	|| command == "SEARCH"
-	|| (IS_IMPROVED && command == "TEST") 
+	|| (IMPROVED && command == "TEST") 
 	|| command == "EXIT";
 
 	if (!isCommand)
@@ -88,3 +87,4 @@ bool Console::isCommand(std::string command)
 
 	return true;
 }
+

@@ -42,10 +42,10 @@ int Contact::getIndex() const {
 }
 
 void Contact::printAsTableRow() const {
-	Console.printColumn(toString(index));
-	Console.printColumn(firstName);
-	Console.printColumn(lastName);
-	Console.printColumn(nickName);
+	Console::printColumn(toString(index));
+	Console::printColumn(firstName);
+	Console::printColumn(lastName);
+	Console::printColumn(nickName);
 }
 
 void Contact::printInDetails() const {

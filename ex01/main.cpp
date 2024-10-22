@@ -8,30 +8,25 @@ int main()
 	PhoneBook*		phoneBook = new PhoneBook();;
 	std::string		command;
 
-	Console.printGreetings();
-	Console.printCommands();
-	command = repeatable_read("Enter command: ", is_command, -1);
-	while(command.empty() || command != "EXIT") 
+	Console::printGreetings();
+	Console::printCommands();
+	command = Console::repeatableRead("Enter command: ", Console::isCommand, -1);
+	while(!(command.empty() || command == "EXIT")) 
 	{
-		switch (command)
+		if (command == "ADD") 
 		{
-		case "ADD":
 			phoneBook->addContact();
-			break;
-		case "SEARCH":
-			phoneBook->searchContact();
-			break;
-		case "TEST":
-			if (IS_IMPROVED) 
-			{
-				phoneBook->test();
-			}
-			break;
-		default:
-			break;
 		}
-		Console.printCommands();
-		command = repeatable_read("Enter command: ", is_command, -1);
+		else if (command == "SEARCH")
+		{
+			phoneBook->searchContact();
+		}
+		else if (IMPROVED && command == "TEST")
+		{
+			phoneBook->test();
+		}
+		Console::printCommands();
+		command = Console::repeatableRead("Enter command: ", Console::isCommand, -1);
 	}
 
 	return 0;

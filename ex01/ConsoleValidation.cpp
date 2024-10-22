@@ -14,19 +14,32 @@ bool ConsoleValidation::isEmpty(std::string str)
 {
 	if (str.empty())
 	{
-		ConsoleValidation.panic("entered value is empty");
+		panic("entered value is empty");
 		return true;
 	}
 	return false;
+}
+
+bool ConsoleValidation::isLettersAndDigits(std::string str) 
+{
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (!isLetter(str[i]) && !isDigit(str[i]))
+		{
+			panic("only letters are allowed");
+			return false;
+		}
+	}
+	return true;
 }
 
 bool ConsoleValidation::isLettersOnly(std::string str) 
 {
 	for (size_t i = 0; i < str.length(); i++)
 	{
-		if (!is_letter(str[i]))
+		if (!isLetter(str[i]))
 		{
-			ConsoleValidation.panic("only letters are allowed");
+			panic("only letters are allowed");
 			return false;
 		}
 	}
@@ -37,22 +50,9 @@ bool ConsoleValidation::isDigitsOnly(std::string str)
 {
 	for (size_t i = 0; i < str.length(); i++)
 	{
-		if (!isdigit(str[i]))
+		if (!isDigit(str[i]))
 		{
-			ConsoleValidation.panic("only digits are allowed");
-			return false;
-		}
-	}
-	return true;
-}
-
-bool ConsoleValidation::isLettersOnly(std::string str) 
-{
-	for (size_t i = 0; i < str.length(); i++)
-	{
-		if (!is_letter(str[i]) && !is_digit(str[i]))
-		{
-			ConsoleValidation.panic("only letters and digits are allowed");
+			panic("only digits are allowed");
 			return false;
 		}
 	}
@@ -65,7 +65,7 @@ bool ConsoleValidation::isAny(std::string str)
 	return true;
 }
 
-void panic(std::string message)
+void ConsoleValidation::panic(std::string message)
 {
 	std::cout << "\033[91m" << "error: " << message << "\033[39m" << std::endl;
 }

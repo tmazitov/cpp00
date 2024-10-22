@@ -3,10 +3,8 @@ NAME=phonebook
 SRCS = main.cpp \
 		Contact.cpp \
 		PhoneBook.cpp \
-		read.cpp \
-		print.cpp \
-		validation.cpp \
-		validation_error.cpp
+		Console.cpp \
+		ConsoleValidation.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

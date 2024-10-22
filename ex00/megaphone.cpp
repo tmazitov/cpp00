@@ -1,12 +1,12 @@
 
 #include <iostream>
 
-bool is_small_letter(char c) 
+bool isSmallLetter(char c) 
 {
 	return (c >= 'a' && c <= 'z');
 }
 
-void sound_megaphone(std::string message)
+void soundMegaphone(std::string message)
 {
 	int	counter;
 	int length;
@@ -17,7 +17,7 @@ void sound_megaphone(std::string message)
 	counter = 0;
 	while (counter < length)
 	{
-		if (is_small_letter(message[counter]))
+		if (isSmallLetter(message[counter]))
 			std::cout << (char)(message[counter] - 32);
 		else
 			std::cout << message[counter];
@@ -34,7 +34,7 @@ int main(int argc, char **argv){
 	{
 		for (int i = 1; i < argc; i++)
 		{
-			sound_megaphone(argv[i]);
+			soundMegaphone(argv[i]);
 		}
 		std::cout << std::endl;
 	}
