@@ -2,7 +2,7 @@
 #define CONTACT_HPP
 
 #include <string>
-#include "print.hpp"
+#include "Console.hpp"
 
 class Contact {
 	private:

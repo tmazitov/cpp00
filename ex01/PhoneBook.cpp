@@ -1,7 +1,6 @@
 #include "PhoneBook.hpp"
 #include <stdlib.h>
 #include <cstdio>
-#include "color.hpp"
 
 PhoneBook::PhoneBook()
 {
@@ -20,14 +19,14 @@ void PhoneBook::searchContact()
 		return ;
 	}
 	this->printContactTable();
-	std::string index = repeatable_read("Write contact index: ", is_digits_only);
+	std::string index = Console.repeatableRead("Write contact index: ", is_digits_only);
 	if (index.empty())
 		return;
 	int contactIndex = std::atoi(index.c_str());
 	
 	if (contactIndex <= 0 || contactIndex > this->addedContacts)
 	{
-		print_error("index of contact is not exists");
+		Console.panic("index of contact is not exists");
 		return;
 	}
 	for (int i = 0; i < 8; i++)
@@ -38,7 +37,7 @@ void PhoneBook::searchContact()
 			return;
 		}
 	}
-	print_error("index of contact is not exists");
+	Console.panic("index of contact is not exists");
 }
 
 void PhoneBook::addContact()
@@ -46,19 +45,19 @@ void PhoneBook::addContact()
 	int contactIndex = this->addedContacts % 8;
 	Contact* contact = new Contact();
 
-	std::string firstName = repeatable_read("First name: ", is_letters_only);
+	std::string firstName = Console.repeatableRead("First name: ", Console.isLetterOnly);
 	if (firstName.empty())
 		return;
-	std::string lastName = repeatable_read("Last name: ", is_letters_only);
+	std::string lastName = Console.repeatableRead("Last name: ", Console.isLetterOnly);
 	if (lastName.empty())
 		return;
-	std::string nickName = repeatable_read("Nick name: ", is_letters_and_digits);
+	std::string nickName = Console.repeatableRead("Nick name: ", Console.isLetterAndDigits);
 	if (nickName.empty())
 		return;
-	std::string phoneNumber = repeatable_read("Phone number: ", is_digits_only);
+	std::string phoneNumber = Console.repeatableRead("Phone number: ", Console.isDigitsOnly);
 	if (phoneNumber.empty())
 		return;
-	std::string secret = repeatable_read("Secret: ", is_any);
+	std::string secret = Console.repeatableRead("Secret: ", Console.isAny);
 	if (secret.empty())
 		return;
 
@@ -75,14 +74,14 @@ void PhoneBook::addContact()
 
 void PhoneBook::printContactTable()
 {
-	printHorizontalLine(51);
+	Contact.printHorizontalLine(51);
 	std::cout << "|";
-	printColumn("Index");
-	printColumn("First name");
-	printColumn("Last name");
-	printColumn("Nick name");
+	Contact.printColumn("Index");
+	Contact.printColumn("First name");
+	Contact.printColumn("Last name");
+	Contact.printColumn("Nick name");
 	std::cout << std::endl;
-	printHorizontalLine(51);
+	Contact.printHorizontalLine(51);
 
 	for (int i = 0; i < std::min(this->addedContacts, 8); i++)
 	{
@@ -90,7 +89,7 @@ void PhoneBook::printContactTable()
 		this->contacts[i]->printAsTableRow();
 		std::cout << std::endl;
 	}
-	printHorizontalLine(51);
+	Contact.printHorizontalLine(51);
 }
 
 static std::string toString(int num) {

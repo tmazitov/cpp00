@@ -5,8 +5,8 @@
 #include <string>
 #include <cstdlib> // For atoi
 #include "Contact.hpp"
-#include "read.hpp"
-#include "validation.hpp"
+#include "Console.hpp"
+
 
 class PhoneBook {
 private:
