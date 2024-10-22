@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp"
 #include <stdlib.h>
 #include <cstdio>
+#include "color.hpp"
 
 PhoneBook::PhoneBook()
 {
@@ -13,6 +14,11 @@ PhoneBook::~PhoneBook()
 
 void PhoneBook::searchContact()
 {
+	if (this->addedContacts == 0) {
+		std::cout << "/* You see the empty list     */" << std::endl;
+		std::cout << "/* and it's nothing to search */" << std::endl;
+		return ;
+	}
 	this->printContactTable();
 	std::string index = repeatable_read("Write contact index: ", is_digits_only);
 	if (index.empty())
@@ -98,7 +104,14 @@ void PhoneBook::test()
 	int id;
 	std::string str;
 
-	for (int i = 0; i < 8; i++)
+	if (this->addedContacts >= 8) {
+		std::cout << "Nothing is changed..." << std::endl;
+		return ;
+	}
+
+	std::cout << YELLOW << "Let's add some test contacts..." << RESET << std::endl;
+
+	for (int i = this->addedContacts; i < 8; i++)
 	{
 		Contact* contact = new Contact();
 		id = i + 1;
