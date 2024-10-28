@@ -13,7 +13,7 @@
 #define YELLOW "\033[33m"
 #define BLUE "\033[34m"
 
-#define IMPROVED true
+#define IMPROVED false
 
 class Console : public ConsoleValidation {
 	public:
