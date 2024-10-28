@@ -74,14 +74,14 @@ void PhoneBook::addContact()
 
 void PhoneBook::printContactTable()
 {
-	Console::printHorizontalLine(51);
+	Console::printHorizontalLine();
 	std::cout << "|";
 	Console::printColumn("Index");
 	Console::printColumn("First name");
 	Console::printColumn("Last name");
 	Console::printColumn("Nick name");
 	std::cout << std::endl;
-	Console::printHorizontalLine(51);
+	Console::printHorizontalLine();
 
 	for (int i = 0; i < std::min(this->addedContacts, 8); i++)
 	{
@@ -89,10 +89,10 @@ void PhoneBook::printContactTable()
 		this->contacts[i]->printAsTableRow();
 		std::cout << std::endl;
 	}
-	Console::printHorizontalLine(51);
+	Console::printHorizontalLine();
 }
 
-static std::string toString(int num) {
+std::string PhoneBook::toString(int num) {
 	char buffer[20]; // Assuming the integer is not too large
 	std::sprintf(buffer, "%d", num);
 	return std::string(buffer);
@@ -114,7 +114,7 @@ void PhoneBook::test()
 	{
 		Contact* contact = new Contact();
 		id = i + 1;
-		str = toString(id);
+		str = this->toString(id);
 		contact->setIndex(id);
 		contact->setFirstName("First" + str);
 		contact->setLastName("Last" + str);

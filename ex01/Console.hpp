@@ -2,6 +2,8 @@
 # define CONSOLE_HPP
 
 # include <iostream>
+# include <string>
+# include <iomanip>
 # include "ConsoleValidation.hpp"
 
 #define RESET "\033[0m"	
@@ -11,12 +13,12 @@
 #define YELLOW "\033[33m"
 #define BLUE "\033[34m"
 
-#define IMPROVED false
+#define IMPROVED true
 
 class Console : public ConsoleValidation {
 	public:
-		static int printColumn(std::string content);
-		static int printHorizontalLine(int length);
+		static void printColumn(std::string content);
+		static void printHorizontalLine();
 		static void printGreetings();
 		static void printCommands();
 		static bool isCommand(std::string command);

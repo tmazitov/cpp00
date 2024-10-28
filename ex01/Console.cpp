@@ -19,39 +19,33 @@ std::string Console::repeatableRead(std::string placeholder, bool (*validator)(s
 	return "";
 }
 
-int Console::printHorizontalLine(int length)
+void Console::printHorizontalLine()
 {
-	std::cout << "|";
-	for (int i = 0; i < length; i++)
-	{
-		std::cout << "-";
-	}
-	std::cout << "|" << std::endl;
+	int colWidth = 10;
 
-	return length;
+	std::cout << "+" << std::setfill('-') << std::setw(colWidth) << ""
+				<< "+" << std::setw(colWidth) << ""
+				<< "+" << std::setw(colWidth) << ""
+				<< "+" << std::setw(colWidth) << "" << "+" << std::endl;
 }
 
-int Console::printColumn(std::string content)
+void Console::printColumn(std::string content)
 { 
-	const int columnWidth = 10;
+	const int colWidth = 10;
 	int length = content.length();
-
-	std::cout << " ";
-	if (length > columnWidth)
+	std::cout << std::left;
+	std::cout << std::setw(colWidth);
+	if (length > colWidth)
 	{
-		std::cout << content.substr(0, columnWidth - 1) << ".";
+		std::string trunkedValue = content.substr(0, colWidth - 1) + ".";
+		std::cout << trunkedValue;
 	}
 	else
 	{
+		std::cout << std::setfill(' ');
 		std::cout << content;
-		for (int i = 0; i < columnWidth - length; i++)
-		{
-			std::cout << " ";
-		}
 	}
-	std::cout << " |";
-
-	return length;
+	std::cout << "|";
 }
 
 void Console::printGreetings()

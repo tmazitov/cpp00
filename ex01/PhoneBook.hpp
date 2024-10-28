@@ -22,6 +22,8 @@ public:
 	
 	void printContactTable();
 	void test();
+	std::string toString(int num);
+
 };
 
-#endif // PHONEBOOK_HPP
+#endif // PHONEBOOK_HPPw
